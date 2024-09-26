@@ -1,11 +1,11 @@
+import os
+from dotenv import dotenv_values
 from langchain_groq import ChatGroq
 from langchain.agents import create_react_agent, AgentExecutor
 from langchain_core.output_parsers import StrOutputParser
 from react_prompt_template import get_prompt_template
 from tools.google_search_tool import google_search
 import warnings
-import os
-from dotenv import dotenv_values
 
 
 def agent(query: str):
@@ -32,7 +32,8 @@ def agent(query: str):
     agent = create_react_agent(
         LLM,
         tools,
-        prompt_template
+        prompt_template,
+        stop_sequence=["\nFinal Answer:"],
     )
 
     agent_executor = AgentExecutor(
