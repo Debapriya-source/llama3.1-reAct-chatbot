@@ -1,3 +1,5 @@
 /venv
 .env
+.gitignore
+/llama
 __pycache__
