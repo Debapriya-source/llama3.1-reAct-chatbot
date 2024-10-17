@@ -5,6 +5,7 @@ from langchain.agents import create_react_agent, AgentExecutor
 from langchain_core.output_parsers import StrOutputParser
 from react_prompt_template import get_prompt_template
 from tools.google_search_tool import google_search
+from tools.webloader import webloader
 import warnings
 
 
@@ -25,7 +26,7 @@ def agent(query: str):
     # This model provides unlimited limit per day
     LLM = ChatGroq(model="llama3-8b-8192")
 
-    tools = [google_search]
+    tools = [google_search,webloader]
 
     prompt_template = get_prompt_template()
 
