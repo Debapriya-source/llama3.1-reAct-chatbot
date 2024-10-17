@@ -1,5 +1,5 @@
 import os
-from dotenv import dotenv_values
+from dotenv import load_dotenv
 import streamlit as st
 from groq import Groq
 from agent import agent
@@ -15,7 +15,10 @@ st.set_page_config(
 st.title("Llama Think with web")
 st.caption("🚀 A Streamlit chatbot powered by Groq and Meta")
 
-GROQ_API_KEY = dotenv_values(".env")["GROQ_API_KEY"]
+# GROQ_API_KEY = dotenv_values(".env")["GROQ_API_KEY"]
+# os.environ['GROQ_API_KEY'] = GROQ_API_KEY
+load_dotenv()
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 os.environ['GROQ_API_KEY'] = GROQ_API_KEY
 client = Groq()
 
