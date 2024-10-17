@@ -1,7 +1,8 @@
 import os
+os.environ['USER_AGENT'] = 'myagent'
 from dotenv import dotenv_values
 from dotenv import load_dotenv
-import streamlit as st
+import streamlit as st 
 from groq import Groq
 from agent import agent
 from langchain_core.messages import HumanMessage, AIMessage
@@ -20,7 +21,6 @@ st.caption("🚀 A Streamlit chatbot powered by Groq and Meta")
 
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 
-print(GROQ_API_KEY,"kkk")
 os.environ['GROQ_API_KEY'] = GROQ_API_KEY
 client = Groq()
 
@@ -37,8 +37,8 @@ if prompt := st.chat_input():
 
     try:
         response = AIMessage(content=(agent(prompt)))
-    except:
-        response = AIMessage(content="API limit exceeded")
+    except Exception as e:
+        response = AIMessage(content=str(e))
     print(response)
     # msg = response
     st.session_state.messages.append(response)
