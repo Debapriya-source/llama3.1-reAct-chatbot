@@ -3,33 +3,52 @@ from langchain.prompts import PromptTemplate
 
 def get_prompt_template():
     return PromptTemplate.from_template(
-        """
-            Answer the following questions as best you can. You have access to the following tools:
+        # """
+        #     Answer the following questions as best you can. You have access to the following tools:
 
-            {tools}
+        #     {tools}
 
-            Use the following format:
+        #     Use the following format:
 
-            Question: the input question you must answer
+        #     Question: the input question you must answer
 
-            Thought: you should always think about what to do.
-            
-            Action: the action to take, should be one of [{tool_names}]
+        #     Thought: you should always think about what to do.
 
-            Action Input: the input to the action
+        #     Action: the action to take, should be one of [{tool_names}]
 
-            Observation: the result of the action
+        #     Action Input: the input to the action
 
-            ... (this Thought/Action/Action Input/Observation can repeat N times)
+        #     Observation: the result of the action
 
-            Thought: I now know the final answer
+        #     ... (this Thought/Action/Action Input/Observation can repeat N times)
 
-            Final Answer: the final answer to the original input question with the summery of the thought process.
+        #     Thought: I now know the final answer
 
-            Begin!
+        #     Final Answer: the final answer to the original input question with the summary of the thought process.
 
-            Question: {input}
+        #     Begin!
 
-            Thought:{agent_scratchpad}
-            """
+        #     Question: {input}
+
+        #     Thought:{agent_scratchpad}
+        #     """
+        '''Answer the following questions as best you can. You have access to the following tools:
+
+        {tools}
+
+        Use the following format:
+
+        Question: the input question you must answer
+        Thought: you should always think about what to do
+        Action: the action to take, should be one of [{tool_names}]
+        Action Input: the input to the action
+        Observation: the result of the action
+        ... (this Thought/Action/Action Input/Observation can repeat N times)
+        Thought: I now know the final answer
+        Final Answer: the final answer to the original input question
+
+        Begin!
+
+        Question: {input}
+        Thought:{agent_scratchpad}'''
     )

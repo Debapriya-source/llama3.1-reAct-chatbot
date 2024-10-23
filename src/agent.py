@@ -6,6 +6,7 @@ from langchain_core.output_parsers import StrOutputParser
 from react_prompt_template import get_prompt_template
 from tools.google_search_tool import google_search
 from tools.webloader import webloader
+from tools.chat import general_purpose_chat
 import warnings
 
 
@@ -27,8 +28,7 @@ def agent(query: str):
     # LLM = ChatGroq(model="llama3-8b-8192")
     LLM = ChatGroq(model="llava-v1.5-7b-4096-preview")
 
-
-    tools = [google_search, webloader]
+    tools = [google_search, webloader, general_purpose_chat]
 
     prompt_template = get_prompt_template()
 
