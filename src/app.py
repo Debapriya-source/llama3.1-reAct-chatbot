@@ -5,7 +5,7 @@ from groq import Groq
 from agent import agent
 from langchain_core.messages import HumanMessage, AIMessage
 
-load_dotenv()
+# load_dotenv()
 
 # frontend congifurations
 st.set_page_config(

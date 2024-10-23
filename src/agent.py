@@ -25,10 +25,10 @@ def agent(query: str):
 
     # LLM = ChatGroq(model="llama-3.1-70b-versatile")
     # This model provides unlimited limit per day
-    # LLM = ChatGroq(model="llama3-8b-8192")
-    LLM = ChatGroq(model="llava-v1.5-7b-4096-preview")
+    LLM = ChatGroq(model="llama3-8b-8192")
+    # LLM = ChatGroq(model="llava-v1.5-7b-4096-preview")
 
-    tools = [google_search, webloader, general_purpose_chat]
+    tools = [google_search, webloader]  # , general_purpose_chat]
 
     prompt_template = get_prompt_template()
 
@@ -36,19 +36,19 @@ def agent(query: str):
         LLM,
         tools,
         prompt_template,
-        stop_sequence=["\nFinal Answer:"],
+        # stop_sequence=["\nFinal Answer:"],
     )
 
     agent_executor = AgentExecutor(
-        agent=agent, tools=tools, verbose=True, handle_parsing_errors=True)
+        agent=agent, tools=tools, verbose=True, handle_parsing_errors=True, )
 
     result = agent_executor.invoke({"input": query})
-    print(result["output"])
+    print(result)
     return result["output"]
 
 
-if __name__ == "__main__":
-    secrets = dotenv_values(".env")
-    os.environ["GROQ_API_KEY"] = secrets["GROQ_API_KEY"]
-    query = input("Enter your query: ")
-    agent(query)
+# if __name__ == "__main__":
+#     secrets = dotenv_values(".env")
+#     os.environ["GROQ_API_KEY"] = secrets["GROQ_API_KEY"]
+#     query = input("Enter your query: ")
+#     agent(query)

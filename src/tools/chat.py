@@ -2,6 +2,8 @@ from langchain_community.document_loaders import WebBaseLoader
 from langchain.tools import tool
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_groq import ChatGroq
+from dotenv import load_dotenv
+import os
 
 
 @tool
@@ -45,4 +47,12 @@ def general_purpose_chat(prompt: str) -> str:
 
     chain = prompt | llm
     result = chain.invoke({"input": prompt})
+    print(result)
     return result
+
+
+if __name__ == "__main__":
+    load_dotenv()
+    GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+    os.environ['GROQ_API_KEY'] = GROQ_API_KEY
+    print(general_purpose_chat("What is the weather like today?"))

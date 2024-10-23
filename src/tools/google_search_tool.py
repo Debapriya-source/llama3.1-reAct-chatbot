@@ -5,7 +5,7 @@ from googlesearch import search
 @tool
 def google_search(query: str, num_results: int = 5):
     """
-    A tool to search a query from Google.
+    A tool to search a query from Google. You can use this only twice.
 
     Args:
         query (str): The search query string.
